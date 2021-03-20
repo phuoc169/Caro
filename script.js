@@ -7,12 +7,32 @@ const boardSize = Array(width * height);
 initBoard()
 const CellElements = document.querySelectorAll('[data-cell]')
 let OTurn
-startGame()
 var Turns=Array(boardSize)
+
+startGame()
 checksave()
+
 function checksave()
 { 
   getCookie()
+  Turns.forEach(turn=>{
+    for(var i=0;i<CellElements.length;i++)
+    {
+      if(turn.turn!==undefined)
+      {
+        if(turn.index.trim()===CellElements[i].classList[1])
+        {
+          
+          CellElements[i].classList.add(turn.turn)
+        }
+      }
+    }
+  })
+  if(Turns[Turns.length-1].turn=='x')
+  {
+    OTurn=true
+  }
+  setBoardHoverClass()
 }
 function undo()
 {
@@ -33,14 +53,12 @@ function setCookie(cname, cvalue, exdays) {
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + "; " + expires;
 }
-function getCookie(cname) {
+function getCookie() {
   var ca = document.cookie.split(';');// Array username = abc , username = xyz
-  console.log(ca)
   for(var i = 0; i <ca.length; i++) {
     var savecell = ca[i].split("=")
     Turns.push({index:savecell[0],turn:savecell[1]})
   }
-  console.log(Turns)
 }
 function save()
 {
