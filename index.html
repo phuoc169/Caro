@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body> 
+    <!-- viết for ở đây để in ra ô phải bằng số styles => .board{grid X 3} -->
+    <div class="board" id="board">
+    </div>
+    <button class="btn" onclick="undo()">undo</button>
+    <button class="btn" onclick="save()">save</button>
+    <div class="winner-message" id="WinningMesage">
+        <div id="WinnerText" data-winnermessage-text></div>
+        <button class="btn" onclick="restart()" id="RestartButton">Restart</button>
+    </div>
+</body>
+</html>
