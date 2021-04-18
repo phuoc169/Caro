@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body> 
+    <!-- viết for ở đây để in ra ô phải bằng số styles => .board{grid X 3} -->
+    <h2 style="text-align: center; font-size: 50px; height: 45px; color: #99CC99;" class="fonts">Game Caro</h2>
+    <div class="board" id="board">
+    </div>
+    <button class="btn fonts" onclick="undo()">undo</button>
+    <button class="btn fonts" onclick="save()">save</button>
+    <button class="btn fonts" onclick="redo()">redo</button>
+    <button class="btn fonts" onclick="restart()">restart</button>
+    <button class="btn fonts" onclick="checksave()">Load</button>
+    <div class="winner-message" id="WinningMesage">
+        <div id="WinnerText" data-winnermessage-text></div>
+        <button class="btn" onclick="restart()" id="RestartButton">Restart</button>
+    </div>
+</body>
+</html>
