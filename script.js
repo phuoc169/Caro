@@ -137,3 +137,35 @@ function deleteAllCookies() {
       board.classList.add(X_CLASS)
     }
 }
+function redo()
+{
+  if(undoTurns.length>0)
+  {
+    swapTurns()
+    setBoardHoverClass()
+    Turns.push(undoTurns[undoTurns.length-1])
+    CellElements.forEach(cell=>{
+      if(cell.classList[1]==undoTurns[undoTurns.length-1].index)
+      {
+        cell.classList.add(undoTurns[undoTurns.length-1].turn);
+        cell.addEventListener('click',handleClick,{once : true})
+      }
+  })
+    undoTurns.pop();
+  }
+}
+
+function announceWinner(winner) {
+    console.log("a");
+    document.getElementById('WinningMesage').style.display='initial';
+    document.getElementById('WinnerText').innerHTML='Chúc mừng '+winner+' đã chiến thắng!';
+    if (winner == "x") {
+      window.alert("X wins");
+    }
+    if (winner == "o") {
+      window.alert("O wins");
+    }
+    if (winner == 2) {
+      window.alert("Board filled");
+    }
+  }
