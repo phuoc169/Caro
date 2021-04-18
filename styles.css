@@ -1,0 +1,157 @@
+*, *::after,*::before{
+    box-sizing: border-box;
+}
+:root{
+    --cell-size:40px;
+    --mark-size: calc(var(--cell-size)*.9);
+}
+body{
+    width: 100vw;
+    height: 90vh;
+    background-color: /*#e5b27e*/  #5C755E /*#5d755f*/;
+}
+
+@font-face{
+    src:url(font/FVF_Fernando_08.ttf);
+    font-family: FVF;
+}
+
+.fonts{
+    font-family: FVF;
+}
+
+/* tạo bàn cờ */
+.board {
+    width: 100vw;
+    height: 70vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(/*cái này là vẽ bàn cờ  lưới 3x3*/12,auto);
+}
+
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    /* background-color: black; */
+    border: 2px solid #F7DCB4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.cell.x,
+.cell.o{
+    cursor: not-allowed;
+}
+/* màu dấu x */
+.cell.x::before,
+.cell.x::after{
+    background-color: #FFFBD0;
+}
+
+.cell.cell.o::before{
+    background-color: /*#FFFFCC*/ white;
+}
+
+/* màu dấu x chuẩn bị đánh */
+.board.o .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover:before,
+.board.x .cell:not(.x):not(.o):hover:before,
+.board.x .cell:not(.x):not(.o):hover::after{
+background-color: lightgrey;
+}
+/* dấu x */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover:before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    content: '';
+    position:absolute;
+    width: calc(var(--mark-size)*.15);
+    height: var(--mark-size);
+   
+
+}
+/* 2 góc nghiêng để tạo thành dấu x */
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after{
+    transform: rotate(45deg);
+}
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before{
+    transform: rotate(-45deg);
+}
+
+/* dấu o */
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after
+{
+    content: '';
+    position:absolute;
+    border-radius: 50%;
+
+}
+/* màu dấu o + kích cỡ */
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before{
+    height: var(--mark-size);
+    width: var(--mark-size);
+
+
+}
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after{
+    width: calc(var(--mark-size)*.7);
+    height: calc(var(--mark-size)*.7);
+    background-color: /*#e5b27e*/ #5C755E;
+}
+.winner-message{
+    display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-color: black;
+    background-color: rgba(0, 0 , 0, .75);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    font-family: FVF;
+    flex-direction: column;
+}
+.winner-message button{
+    font-size:  3rem;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    padding: .25rem .5rem;
+    cursor: pointer;
+    font-family: FVF;
+}
+.winner-message button:hover{
+background-color: black;
+color: chartreuse;
+border-color: chartreuse;
+}
+.winner-message.show{
+    display: flex;
+    text-align: center;
+}
+
+.btn{
+    font-size: 22px;
+    margin-left: 650px;
+    margin-right: -580px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background-color: #99CC99;
+    border-radius: 40px;
+    text-align: center;
+}
